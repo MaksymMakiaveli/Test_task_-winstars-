@@ -1,0 +1,73 @@
+.card {
+  .box_card {
+    max-width: 650px;
+    height: 300px;
+    width: 100%;
+    padding: 5px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    background: #fff;
+    overflow: hidden;
+    display: flex;
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(20px);
+    border-radius: 10px;
+    -webkit-backdrop-filter: blur(20px);
+  }
+  .box_image {
+    flex: 0 0 40%;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 10px;
+
+    img {
+      max-width: 270px;
+      max-height: 300px;
+      height: 100%;
+      width: 100%;
+    }
+  }
+  .box_info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    padding: 10px 20px 40px 20px;
+    .box_topCard {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: rgba(0, 0, 0, 0.64);
+      .title {
+        font-weight: bold;
+        font-size: 20px;
+      }
+      .postData {
+        font-size: 12px;
+      }
+    }
+    .box_bottomCard {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      .price {
+        font-weight: bold;
+        font-size: 18px;
+      }
+      .buttonBuy {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        height: 40px;
+        padding: 0px 35px;
+        margin-top: 20px;
+        font-size: 13px;
+        font-weight: bold;
+        color: rgba(0, 0, 0, 0.64);
+        border-radius: 10px;
+        background: #9be9ff;
+      }
+    }
+  }
+}

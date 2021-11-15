@@ -1,0 +1,50 @@
+.header {
+  .box_header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 20px;
+  }
+  .box_logo {
+    img {
+      width: 80px;
+      height: 80px;
+    }
+  }
+  .box_basket {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0px 20px 0px 0px;
+    .amount_basket {
+      color: #fff;
+      font-size: 20px;
+      margin-right: 20px;
+    }
+    .basket_icon {
+      width: 30px;
+      height: 30px;
+    }
+    .box_badge {
+      position: relative;
+      .badge {
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 25px;
+        height: 25px;
+        background: rgb(68, 112, 177);
+        border-radius: 50%;
+        right: 0;
+        top: 0;
+        transform: translate(50%, 0%);
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        .badge_value {
+          color: #fff;
+          font-size: 10px;
+        }
+      }
+    }
+  }
+}
