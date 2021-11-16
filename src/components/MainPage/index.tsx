@@ -27,7 +27,7 @@ export const MainPage: React.FC<MainPageProps> = () => {
     <section className={classes.mainPage}>
       <div className={classes.box_mainPage}>
         {products.map((el) => (
-          <Card key={el.id} price={el.price} title={el.title} />
+          <Card key={el.id} id={el.id} price={el.price} title={el.title} />
         ))}
       </div>
       <ModalAddProduct open={openModal} setOpen={setOpenModal} />

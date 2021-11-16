@@ -1,14 +1,23 @@
 import React from 'react';
 import classes from './Card.module.scss';
 import iphone from '../../assets/img/iphone.jpeg';
+import { useDispatch } from 'react-redux';
+import { sendProductToBasket } from '../../store/actions/basket';
 
 interface CardProps {
+  id: string;
   title: string;
   price: number;
 }
 
 export const Card: React.FC<CardProps> = (props) => {
-  const { title, price } = props;
+  const { title, price, id } = props;
+  const dispatch = useDispatch();
+
+  const addToBasket = () => {
+    dispatch(sendProductToBasket(id));
+  };
+
   return (
     <div className={classes.card}>
       <div className={classes.box_card}>
@@ -23,7 +32,9 @@ export const Card: React.FC<CardProps> = (props) => {
           </div>
           <div className={classes.box_bottomCard}>
             <span className={classes.price}>{price}$</span>
-            <button className={classes.buttonBuy}>Add to basket</button>
+            <button onClick={() => addToBasket()} className={classes.buttonBuy}>
+              Add to basket
+            </button>
           </div>
         </div>
       </div>

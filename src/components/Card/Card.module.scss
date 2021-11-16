@@ -1,5 +1,10 @@
 .card {
-  &:not(:last-child){
+  width: 100%;
+  justify-self: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &:not(:last-child) {
     margin-bottom: 10px;
   }
   .box_card {

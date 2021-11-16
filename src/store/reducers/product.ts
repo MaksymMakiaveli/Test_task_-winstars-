@@ -1,6 +1,6 @@
-import ProductState, { ProductAction } from '../types/product';
+import ProductState, { Product, ProductAction } from '../types/product';
 import { GET_PRODUCTS, SUCCESS } from '../types/actionTypes';
-import { concatActions } from '../../helpers';
+import { concatActions, objectToArray } from '../../helpers';
 
 const initialState: ProductState = {
   products: [],
@@ -18,16 +18,12 @@ export const ProductReducer = (
         loading: true,
       };
     case concatActions(GET_PRODUCTS, SUCCESS):
-      const array: any = [];
-      Object.values(action.response).forEach((val): void => {
-        array.push(val);
-      });
-      const so = array.sort((a: any, b: any) => a.createdAt - b.createdAt);
-      console.log(so);
+      const prod = objectToArray<Product>(action.response);
+      const prodSort = prod.sort((a: any, b: any) => a.createdAt - b.createdAt);
       return {
         ...product,
         loading: false,
-        products: so,
+        products: prodSort,
       };
     default:
       return product;
