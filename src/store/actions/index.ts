@@ -1,3 +1,3 @@
-import { TodoAction } from '../types/todo/todoAction';
+import { ProductAction } from '../types/product';
 
-export type ActionTypes = TodoAction;
+export type ActionTypes = ProductAction;

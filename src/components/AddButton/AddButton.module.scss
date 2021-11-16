@@ -1,0 +1,17 @@
+.box_button {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  transform: translate(100%,-20%);
+  .button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    padding: 0 16px;
+    border-radius: 50%;
+    font-size: 30px;
+    background: #415ebe;
+    color: #fff;
+  }
+}
