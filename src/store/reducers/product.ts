@@ -18,10 +18,16 @@ export const ProductReducer = (
         loading: true,
       };
     case concatActions(GET_PRODUCTS, SUCCESS):
+      const array: any = [];
+      Object.values(action.response).forEach((val): void => {
+        array.push(val);
+      });
+      const so = array.sort((a: any, b: any) => a.createdAt - b.createdAt);
+      console.log(so);
       return {
         ...product,
         loading: false,
-        products: [...product.products, action.response],
+        products: so,
       };
     default:
       return product;

@@ -1,4 +1,7 @@
 .card {
+  &:not(:last-child){
+    margin-bottom: 10px;
+  }
   .box_card {
     max-width: 650px;
     height: 300px;

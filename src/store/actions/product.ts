@@ -16,12 +16,9 @@ export const getProducts =
       if (response === null) {
         return;
       }
-      const arr = Object.keys(response).forEach(function (key) {
-        console.log(key, response[key]);
-      });
-      console.log(arr);
+
       dispatch({ type: GET_PRODUCTS });
-      dispatch({ type: concatActions(GET_PRODUCTS, SUCCESS), arr });
+      dispatch({ type: concatActions(GET_PRODUCTS, SUCCESS), response });
     });
   };
 

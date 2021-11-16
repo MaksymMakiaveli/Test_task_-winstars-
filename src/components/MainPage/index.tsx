@@ -19,15 +19,15 @@ export const MainPage: React.FC<MainPageProps> = () => {
   React.useEffect(() => {
     dispatch(getProducts());
   }, []);
-  console.log(products);
+
   if (loading) {
     <p>Loading...</p>;
   }
   return (
     <section className={classes.mainPage}>
       <div className={classes.box_mainPage}>
-        {products.map(() => (
-          <Card />
+        {products.map((el) => (
+          <Card key={el.id} price={el.price} title={el.title} />
         ))}
       </div>
       <ModalAddProduct open={openModal} setOpen={setOpenModal} />
