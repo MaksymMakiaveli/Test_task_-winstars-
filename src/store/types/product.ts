@@ -5,8 +5,9 @@ export type Product = {
   id: string;
   title: string;
   price: number;
+  img: string;
   description: string;
-  createdAt?: Date;
+  createdAt: Date;
 };
 
 interface ProductState {

@@ -62,7 +62,8 @@
         font-weight: bold;
         font-size: 18px;
       }
-      .buttonBuy {
+      .buttonBuy,
+      .buttonDeleted{
         display: flex;
         align-items: center;
         justify-content: center;
@@ -75,6 +76,10 @@
         color: rgba(0, 0, 0, 0.64);
         border-radius: 10px;
         background: #9be9ff;
+      }
+      .buttonDeleted {
+        background: #ff3973;
+        color: #fff;
       }
     }
   }

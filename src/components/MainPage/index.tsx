@@ -6,6 +6,7 @@ import { ModalAddProduct } from '../ModalAddProduct';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store';
 import { getProducts } from '../../store/actions/product';
+import SimpleBar from 'simplebar-react';
 
 interface MainPageProps {}
 
@@ -17,7 +18,9 @@ export const MainPage: React.FC<MainPageProps> = () => {
   );
 
   React.useEffect(() => {
-    dispatch(getProducts());
+    if (products.length === 0) {
+      dispatch(getProducts());
+    }
   }, []);
 
   if (loading) {
@@ -25,11 +28,13 @@ export const MainPage: React.FC<MainPageProps> = () => {
   }
   return (
     <section className={classes.mainPage}>
-      <div className={classes.box_mainPage}>
-        {products.map((el) => (
-          <Card key={el.id} id={el.id} price={el.price} title={el.title} />
-        ))}
-      </div>
+      <SimpleBar style={{ maxHeight: 800 }}>
+        <div className={classes.box_mainPage}>
+          {products.map((el) => (
+            <Card key={el.id} product={el} />
+          ))}
+        </div>
+      </SimpleBar>
       <ModalAddProduct open={openModal} setOpen={setOpenModal} />
       <AddButton openModal={setOpenModal} />
     </section>

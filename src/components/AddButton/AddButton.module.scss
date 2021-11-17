@@ -1,9 +1,9 @@
 .box_button {
-  position: sticky;
+  position: fixed;
   display: inline-block;
   bottom: 0;
   left: 0;
-  transform: translate(-20%, -20%);
+  transform: translate(50%, -30%);
   .button {
     display: flex;
     align-items: center;

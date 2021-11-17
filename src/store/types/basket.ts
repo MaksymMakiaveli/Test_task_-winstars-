@@ -5,6 +5,7 @@ import { GET_BASKET, SEND_PRODUCT_TO_BASKET, SUCCESS } from './actionTypes';
 export interface BasketState {
   products: [] | Product[];
   amount: number;
+  loading: boolean;
 }
 
 export interface SendProductToBasket

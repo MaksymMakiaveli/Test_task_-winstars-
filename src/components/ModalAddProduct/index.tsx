@@ -14,6 +14,7 @@ interface ValueInput {
   title: string;
   price: number;
   description: string;
+  img: string;
 }
 
 export const ModalAddProduct: React.FC<ModalAddProductProps> = (props) => {
@@ -21,18 +22,29 @@ export const ModalAddProduct: React.FC<ModalAddProductProps> = (props) => {
   const dispatch = useDispatch();
   const {
     register,
+    resetField,
     formState: { errors },
     handleSubmit,
-  } = useForm<ValueInput>();
+  } = useForm<ValueInput>({
+    mode: 'onChange',
+    defaultValues: {
+      img: '',
+      description: '',
+      title: '',
+    },
+  });
 
-  const onSubmit: SubmitHandler<ValueInput> = (data, event) => {
+  const onSubmit: SubmitHandler<ValueInput> = (data) => {
     dispatch(createProduct(data));
-    event?.target.reset();
+    resetField('img');
+    resetField('description');
+    resetField('title');
+    resetField('price');
     setOpen(false);
   };
-
   return (
     <div className={cl(classes.modal, { [classes.modal_open]: open })}>
+      <button onClick={() => setOpen(!open)} className={classes.bg_Modal} />
       <div className={classes.wrapper_modal}>
         <div className={classes.modal_header}>
           <h3>Create new product</h3>
@@ -46,36 +58,36 @@ export const ModalAddProduct: React.FC<ModalAddProductProps> = (props) => {
           </a>
         </div>
         <form className={classes.form} onSubmit={handleSubmit(onSubmit)}>
-          <div className={classes.box_input}>
+          <div className="box_input">
             <label htmlFor="title">Title</label>
             <input
               {...register('title', { required: true, maxLength: 20 })}
               name="title"
               type="text"
               id="title"
-              className={classes.input}
+              className="input"
             />
             {errors.title?.type === 'required' && (
-              <p className={classes.error}>Title is required</p>
+              <p className="error">Title is required</p>
             )}
           </div>
-          <div className={classes.box_input}>
+          <div className="box_input">
             <label htmlFor="price">Price</label>
             <input
               {...register('price', { pattern: /^[0-9]*$/, required: true })}
               name="price"
               type="text"
               id="price"
-              className={classes.input}
+              className="input"
             />
             {errors.price?.type === 'pattern' && (
-              <p className={classes.error}>Only numbers</p>
+              <p className="error">Only numbers</p>
             )}
             {errors.price?.type === 'required' && (
-              <p className={classes.error}>Price is required</p>
+              <p className="error">Price is required</p>
             )}
           </div>
-          <div className={classes.box_input}>
+          <div className="box_input">
             <label htmlFor="description">Description</label>
             <textarea
               {...register('description')}
@@ -83,14 +95,29 @@ export const ModalAddProduct: React.FC<ModalAddProductProps> = (props) => {
               rows={5}
               cols={10}
               id="description"
-              className={classes.input}
+              className="input"
             />
           </div>
-          <div className={classes.box_button}>
+          <div className="box_input">
+            <label htmlFor="img">Image URL</label>
+            <input
+              {...register('img', {
+                pattern: /(http[s]?:\/\/.*\.(?:png|jpg|gif|svg|jpeg))/i,
+              })}
+              name="img"
+              type="text"
+              id="img"
+              className="input"
+            />
+            {errors.img?.type === 'pattern' && (
+              <p className="error">Invalid URL image</p>
+            )}
+          </div>
+          <div className="box_button">
             <button
               type="submit"
               disabled={Boolean(Object.keys(errors).length)}
-              className={classes.button}
+              className="button"
             >
               Create
             </button>

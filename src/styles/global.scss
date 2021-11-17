@@ -1,7 +1,7 @@
 @import './nullStyle';
+@import "./form";
 
-body,
-#root {
+body{
   background-image: -moz-linear-gradient(
     45deg,
     rgb(255, 204, 246),
@@ -21,11 +21,17 @@ body,
   );
 
   font-family: 'Nunito', sans-serif;
-
   position: relative;
+
 }
 
 .container {
   max-width: 1920px;
   padding: 20px 40px;
+}
+
+.preloader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
