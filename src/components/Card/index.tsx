@@ -18,10 +18,8 @@ export const Card: React.FC<CardProps> = (props) => {
   const dispatch = useDispatch();
   const location = useLocation();
   const postDateGeneration = () => {
-    const date = new Date(+product.createdAt);
-    return ` ${date.getHours()}:${date.getMinutes()}  - ${date.getDay()}/${
-      date.getMonth() + 1
-    }/${date.getFullYear()}`;
+    const date = new Date(Number(product.createdAt));
+    return ` ${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
   };
   const addToBasket = () => {
     dispatch(ProductsHandling(product));
