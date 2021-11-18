@@ -76,7 +76,7 @@ export const ModalAddProduct: React.FC<ModalAddProductProps> = (props) => {
             <input
               {...register('price', { pattern: /^[0-9]*$/, required: true })}
               name="price"
-              type="text"
+              type="number"
               id="price"
               className="input"
             />

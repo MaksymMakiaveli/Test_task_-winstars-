@@ -16,6 +16,7 @@ export const Basket: React.FC<BasketProps> = () => {
   if (loading) {
     return <Preloader />;
   }
+
   return (
     <div className={classes.basket}>
       <div className={classes.basket_wrapper}>

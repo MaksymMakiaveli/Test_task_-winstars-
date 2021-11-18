@@ -3,29 +3,50 @@ import { RootState } from '../index';
 import { Dispatch } from 'redux';
 import { BasketAction, BasketState } from '../types/basket';
 import { getDatabase, onValue, ref, remove, set } from 'firebase/database';
-import { GET_BASKET, SUCCESS } from '../types/actionTypes';
+import {
+  ADD_PRODUCT_TO_BASKET,
+  GET_BASKET,
+  SUCCESS,
+} from '../types/actionTypes';
 import { concatActions, objectToArray } from '../../helpers';
 import { Product } from '../types/product';
+import {
+  deleteDoc,
+  doc,
+  getDoc,
+  getFirestore,
+  setDoc,
+} from 'firebase/firestore';
+import { ActionTypes } from './index';
 
-export const sendProductToBasket =
-  (id: string): ThunkAction<any, RootState, any, any> =>
-  async (dispatch: Dispatch<BasketAction>, getState) => {
-    const db = getDatabase();
-    const productRef = ref(db, `product/${id}`);
-    const basketRef = ref(db, `basketProducts/${id}`);
-    const basketAmountRef = ref(db, `balance/`);
-
-    onValue(productRef, (snapshot) => {
-      const response: Product = snapshot.val();
-      if (response === null) {
+export const addProductToBasket =
+  (product: Product): ThunkAction<any, RootState, any, any> =>
+  async (dispatch: Dispatch<ActionTypes>, getState) => {
+    const db = getFirestore();
+    try {
+      const BasketProductsRef = doc(db, `basketProducts/${product.id}`);
+      const basketAmountRef = doc(db, `basket/amount`);
+      const deletedProductRef = doc(db, `products/${product.id}`);
+      await setDoc(BasketProductsRef, product);
+      const basketProduct = await getDoc(BasketProductsRef);
+      if (!basketProduct.exists()) {
         return;
       }
-      const amount = +response.price + getState().BasketReducer.amount;
-      set(basketRef, response).then(() => {
-        set(basketAmountRef, amount);
+      const response: Product = <Product>basketProduct.data();
+      console.log('res', response);
+      dispatch({ type: ADD_PRODUCT_TO_BASKET });
+      dispatch({
+        type: concatActions(ADD_PRODUCT_TO_BASKET, SUCCESS),
+        response,
       });
-      remove(productRef);
-    });
+      const newAmount = getState().BasketReducer.amount;
+      console.log(newAmount);
+      console.log(typeof newAmount);
+      await setDoc(basketAmountRef, { newAmount });
+      await deleteDoc(deletedProductRef);
+    } catch (e) {
+      console.log(e);
+    }
   };
 
 export const deleteProductInBasket =

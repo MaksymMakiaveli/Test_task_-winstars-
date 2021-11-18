@@ -1,6 +1,6 @@
 import { Product } from './product';
 import { BaseAction, Concat } from './index';
-import { GET_BASKET, SEND_PRODUCT_TO_BASKET, SUCCESS } from './actionTypes';
+import { ADD_PRODUCT_TO_BASKET, GET_BASKET, SUCCESS } from './actionTypes';
 
 export interface BasketState {
   products: [] | Product[];
@@ -8,11 +8,11 @@ export interface BasketState {
   loading: boolean;
 }
 
-export interface SendProductToBasket
-  extends BaseAction<typeof SEND_PRODUCT_TO_BASKET> {}
+export interface AddProductToBasket
+  extends BaseAction<typeof ADD_PRODUCT_TO_BASKET> {}
 
-export interface SendProductToBasketSuccess
-  extends BaseAction<Concat<typeof SEND_PRODUCT_TO_BASKET, typeof SUCCESS>> {
+export interface AddProductToBasketSuccess
+  extends BaseAction<Concat<typeof ADD_PRODUCT_TO_BASKET, typeof SUCCESS>> {
   response: Product;
 }
 
@@ -23,7 +23,7 @@ export interface GetBasketSuccess
 }
 
 export type BasketAction =
-  | SendProductToBasket
-  | SendProductToBasketSuccess
+  | AddProductToBasket
+  | AddProductToBasketSuccess
   | GetBasket
   | GetBasketSuccess;

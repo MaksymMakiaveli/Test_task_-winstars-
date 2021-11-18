@@ -1,5 +1,10 @@
 import { BaseAction, Concat } from './index';
-import { GET_PRODUCTS, SUCCESS } from './actionTypes';
+import {
+  CREATE_PRODUCT,
+  // DELETE_PRODUCT,
+  GET_PRODUCTS,
+  SUCCESS,
+} from './actionTypes';
 
 export type Product = {
   id: string;
@@ -7,7 +12,7 @@ export type Product = {
   price: number;
   img: string;
   description: string;
-  createdAt: Date;
+  createdAt: string;
 };
 
 interface ProductState {
@@ -19,9 +24,25 @@ export interface GetProducts extends BaseAction<typeof GET_PRODUCTS> {}
 
 export interface GetProductsSuccess
   extends BaseAction<Concat<typeof GET_PRODUCTS, typeof SUCCESS>> {
+  response: Product[];
+}
+
+export interface CreateProduct extends BaseAction<typeof CREATE_PRODUCT> {}
+export interface CreateProductSuccess
+  extends BaseAction<Concat<typeof CREATE_PRODUCT, typeof SUCCESS>> {
   response: Product;
 }
 
-export type ProductAction = GetProducts | GetProductsSuccess;
+// export interface DeleteProduct extends BaseAction<typeof DELETE_PRODUCT> {}
+// export interface DeleteProductSuccess
+//   extends BaseAction<Concat<typeof DELETE_PRODUCT, typeof SUCCESS>> {
+//   id: string;
+// }
+
+export type ProductAction =
+  | GetProducts
+  | GetProductsSuccess
+  | CreateProduct
+  | CreateProductSuccess;
 
 export default ProductState;

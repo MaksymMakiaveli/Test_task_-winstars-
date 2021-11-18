@@ -19,6 +19,7 @@ export const MainPage: React.FC<MainPageProps> = () => {
 
   React.useEffect(() => {
     if (products.length === 0) {
+      console.log('prod');
       dispatch(getProducts());
     }
   }, []);
