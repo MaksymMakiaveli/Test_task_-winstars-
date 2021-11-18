@@ -5,7 +5,7 @@ import { AddButton } from '../AddButton';
 import { ModalAddProduct } from '../ModalAddProduct';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store';
-import { getProducts } from '../../store/actions/product';
+import { GetProducts } from '../../store/actions/application';
 import SimpleBar from 'simplebar-react';
 
 interface MainPageProps {}
@@ -14,13 +14,12 @@ export const MainPage: React.FC<MainPageProps> = () => {
   const [openModal, setOpenModal] = React.useState(false);
   const dispatch = useDispatch();
   const { loading, products } = useSelector(
-    (state: RootState) => state.ProductReducer
+    (state: RootState) => state.ApplicationReducer
   );
 
   React.useEffect(() => {
     if (products.length === 0) {
-      console.log('prod');
-      dispatch(getProducts());
+      dispatch(GetProducts());
     }
   }, []);
 

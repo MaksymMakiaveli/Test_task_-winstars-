@@ -2,12 +2,12 @@ import React from 'react';
 import classes from './Card.module.scss';
 import emptyImage from '../../assets/img/empty.png';
 import { useDispatch } from 'react-redux';
-import {
-  addProductToBasket,
-  deleteProductInBasket,
-} from '../../store/actions/basket';
-import { Product } from '../../store/types/product';
+import { Product } from '../../store/types/application';
 import { useLocation } from 'react-router-dom';
+import {
+  BasketHandling,
+  ProductsHandling,
+} from '../../store/actions/application';
 
 interface CardProps {
   product: Product;
@@ -24,10 +24,10 @@ export const Card: React.FC<CardProps> = (props) => {
     }/${date.getFullYear()}`;
   };
   const addToBasket = () => {
-    dispatch(addProductToBasket(product));
+    dispatch(ProductsHandling(product));
   };
   const deleteInBasket = () => {
-    dispatch(deleteProductInBasket(product.id));
+    dispatch(BasketHandling(product));
   };
 
   return (
@@ -45,15 +45,12 @@ export const Card: React.FC<CardProps> = (props) => {
           <div className={classes.box_bottomCard}>
             <span className={classes.price}>{product.price}&nbsp;$</span>
             {location.pathname === '/' ? (
-              <button
-                onClick={() => addToBasket()}
-                className={classes.buttonBuy}
-              >
+              <button onClick={addToBasket} className={classes.buttonBuy}>
                 Add to basket
               </button>
             ) : (
               <button
-                onClick={() => deleteInBasket()}
+                onClick={deleteInBasket}
                 className={classes.buttonDeleted}
               >
                 Deleted

@@ -2,7 +2,7 @@ import React from 'react';
 import { Header } from './Header';
 import { MainPage } from './MainPage';
 import { useDispatch } from 'react-redux';
-import { getBasket } from '../store/actions/basket';
+import { GetBasket } from '../store/actions/application';
 import { Routes, Route } from 'react-router-dom';
 import 'simplebar/dist/simplebar.min.css';
 import { Basket } from './Bakset';
@@ -10,7 +10,7 @@ import { Basket } from './Bakset';
 export const App: React.FC = () => {
   const dispatch = useDispatch();
   React.useEffect(() => {
-    dispatch(getBasket());
+    dispatch(GetBasket());
   }, []);
 
   return (

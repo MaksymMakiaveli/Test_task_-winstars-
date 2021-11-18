@@ -10,8 +10,8 @@ import { Preloader } from '../Preloader';
 interface BasketProps {}
 
 export const Basket: React.FC<BasketProps> = () => {
-  const { products, amount, loading } = useSelector(
-    (state: RootState) => state.BasketReducer
+  const { basket, loading } = useSelector(
+    (state: RootState) => state.ApplicationReducer
   );
   if (loading) {
     return <Preloader />;
@@ -22,13 +22,13 @@ export const Basket: React.FC<BasketProps> = () => {
       <div className={classes.basket_wrapper}>
         <SimpleBar style={{ maxHeight: 800, maxWidth: 650, width: '100%' }}>
           <div className={classes.card_box}>
-            {products.map((el) => (
+            {basket.basketProducts.map((el) => (
               <Card key={el.id} product={el} />
             ))}
           </div>
         </SimpleBar>
         <div className={classes.form_box}>
-          <CompletedOrderForm amount={amount} />
+          <CompletedOrderForm basket={basket} />
         </div>
       </div>
     </div>

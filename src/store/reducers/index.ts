@@ -1,10 +1,8 @@
 import { combineReducers } from 'redux';
-import { ProductReducer } from './product';
-import { BasketReducer } from './basket';
+import { ApplicationReducer } from './application';
 
 const reducer = combineReducers({
-  ProductReducer,
-  BasketReducer,
+  ApplicationReducer,
 });
 
 export default reducer;

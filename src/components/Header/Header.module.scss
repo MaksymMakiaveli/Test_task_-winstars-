@@ -11,6 +11,28 @@
       height: 80px;
     }
   }
+  .box_button {
+    display: none;
+    justify-content: center;
+    .button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      height: 40px;
+      padding: 0 35px;
+      font-size: 13px;
+      font-weight: bold;
+      color: rgba(0, 0, 0, 0.64);
+      border-radius: 10px;
+      background: #9be9ff;
+    }
+  }
+  @media (max-width: 1110px) {
+    .box_button {
+      display: flex;
+    }
+  }
   .box_basket {
     display: flex;
     align-items: center;

@@ -3,7 +3,8 @@ import classes from './ModalAddProduct.module.scss';
 import cl from 'classnames';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
-import { createProduct } from '../../store/actions/product';
+import { CreateProduct } from '../../store/actions/application';
+import { Product } from '../../store/types/application';
 
 interface ModalAddProductProps {
   open: boolean;
@@ -34,8 +35,8 @@ export const ModalAddProduct: React.FC<ModalAddProductProps> = (props) => {
     },
   });
 
-  const onSubmit: SubmitHandler<ValueInput> = (data) => {
-    dispatch(createProduct(data));
+  const onSubmit: SubmitHandler<Product> = (data) => {
+    dispatch(CreateProduct(data));
     resetField('img');
     resetField('description');
     resetField('title');

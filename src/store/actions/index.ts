@@ -1,4 +1,3 @@
-import { ProductAction } from '../types/product';
-import { BasketAction } from '../types/basket';
+import { ApplicationActions } from '../types/application';
 
-export type ActionTypes = ProductAction | BasketAction;
+export type ActionTypes = ApplicationActions;

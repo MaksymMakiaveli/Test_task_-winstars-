@@ -52,4 +52,7 @@
     border-radius: 10px;
     background: #9be9ff;
   }
+  button[disabled] {
+    background: rgba(96, 95, 95, 0.45);
+  }
 }

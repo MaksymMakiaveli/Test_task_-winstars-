@@ -1,29 +1,46 @@
 import React from 'react';
 import classes from './CompletedOrderForm.module.scss';
 import { useForm } from 'react-hook-form';
+import { Basket } from '../../store/types/application';
+import { useDispatch } from 'react-redux';
+import { BuyAll } from '../../store/actions/application';
 
 interface CompletedOrderFormProps {
-  amount: number;
+  basket: Basket;
+}
+
+interface ValueInputs {
+  name: string;
+  surname: string;
+  email: string;
+  phone: number;
 }
 
 export const CompletedOrderForm: React.FC<CompletedOrderFormProps> = (
   props
 ) => {
-  const { amount } = props;
+  const { basket } = props;
   const patternLetters =
     /^[A-Za-z.!@?#"$%&:;() *\+,\/;\-=[\\\]\^_{|}<>\u0400-\u04FF]*$/;
   const patternEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
-  } = useForm({
+  } = useForm<ValueInputs>({
     mode: 'onChange',
   });
+  const dispatch = useDispatch();
 
-  const onSubmit = (data: any) => {
-    console.log(JSON.stringify(data));
-    console.log(data);
+  const onSubmit = (data: ValueInputs) => {
+    const valueJSON = {
+      ...data,
+      ...basket,
+    };
+    alert(JSON.stringify(valueJSON));
+    dispatch(BuyAll(basket.basketProducts));
+    reset();
   };
 
   return (
@@ -91,10 +108,14 @@ export const CompletedOrderForm: React.FC<CompletedOrderFormProps> = (
           />
         </div>
         <p>
-          Cost of all: <span>{amount}&nbsp;$</span>
+          Cost of all: <span>{basket.amount}&nbsp;$</span>
         </p>
         <div className="box_button">
-          <button type="submit" className="button">
+          <button
+            disabled={basket.basketProducts.length === 0}
+            type="submit"
+            className="button"
+          >
             Buy
           </button>
         </div>
