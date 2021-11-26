@@ -20,11 +20,23 @@ export const Todos: React.FC<TodosProps> = ({
   const [checked, setChecked] = React.useState(todo.checked);
   const [animated, setAnimated] = React.useState(false);
   const [remove, setRemove] = React.useState(false);
+  const [edit, setEdit] = React.useState(false);
+  const [value, setValue] = React.useState(todo.value);
 
   const checkedHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setChecked(!checked);
     setAnimated(!animated);
     updateTodo({ ...todo, checked: e.target.checked });
+  };
+  const editHandler = () => {
+    setEdit(!edit);
+  };
+  const saveHandler = () => {
+    setEdit(!edit);
+    updateTodo({ ...todo, value: value });
+  };
+  const valueHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setValue(e.target.value);
   };
   const clickRemoveTodo = () => {
     setRemove(!remove);
@@ -43,11 +55,32 @@ export const Todos: React.FC<TodosProps> = ({
         type="checkbox"
         checked={checked}
         onChange={checkedHandler}
+        disabled={edit}
       />
-      <p className={classes.text}>{todo.value}</p>
-      <button onClick={clickRemoveTodo} type="button" className={classes.close}>
-        +
-      </button>
+
+      {!edit ? (
+        <p className={classes.text}>{todo.value}</p>
+      ) : (
+        <input type="text" value={value} onChange={valueHandler} />
+      )}
+      <div className={classes.actions_box}>
+        <button
+          onClick={clickRemoveTodo}
+          type="button"
+          className={classes.close}
+        >
+          +
+        </button>
+        {checked ? null : !edit ? (
+          <button onClick={editHandler} type="button" className={classes.edit}>
+            Edit
+          </button>
+        ) : (
+          <button onClick={saveHandler} type="button" className={classes.edit}>
+            Save
+          </button>
+        )}
+      </div>
     </div>
   );
 };

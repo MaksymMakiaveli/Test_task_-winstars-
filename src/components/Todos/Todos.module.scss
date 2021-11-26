@@ -15,12 +15,24 @@
     transition: all 0.3s ease-in;
     margin-left: 0.8rem;
   }
+  .actions_box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: -0.5rem;
+    margin-left: 0.2rem;
+  }
   .close {
     background: transparent;
     font-size: 2em;
     font-weight: bold;
     color: rgba(246, 4, 80, 0.66);
     transform: rotateZ(45deg);
+  }
+  .edit {
+    background: transparent;
+    font-size: 1em;
+    font-weight: bold;
   }
 }
 .todos_completed {

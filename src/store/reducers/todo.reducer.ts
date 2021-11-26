@@ -24,6 +24,7 @@ export const TodoReducer = (
       const todo = state.todos.map((el: Todo) => {
         if (el.id === action.response.id) {
           el.checked = action.response.checked;
+          el.value = action.response.value;
         }
         return el;
       });
