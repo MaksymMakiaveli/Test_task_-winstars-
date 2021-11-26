@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import { ApplicationReducer } from './application';
+import { TodoReducer } from './todo.reducer';
 
 const reducer = combineReducers({
-  ApplicationReducer,
+  TodoReducer: TodoReducer,
 });
 
 export default reducer;

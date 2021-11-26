@@ -1,0 +1,11 @@
+.mainSection {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  &_wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 5rem;
+  }
+}

@@ -1,0 +1,14 @@
+.main {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  &_wrapper {
+    .select_box {
+      select {
+      }
+    }
+    .form_box {
+      margin-top: 1rem;
+    }
+  }
+}

@@ -1,0 +1,31 @@
+.form {
+  &_box {
+    position: relative;
+    input {
+      width: 300px;
+      padding: 1rem 3rem 1rem 1rem;
+      border-radius: 0.5rem;
+    }
+    button {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: 1rem;
+      background: transparent;
+      font-size: 2rem;
+      font-weight: bold;
+      color: #010832;
+      transition: all 0.3s ease-in;
+      &:hover {
+        color: rgba(1, 8, 50, 0.44);
+        transform: scale(1.5);
+      }
+    }
+  }
+  .error {
+    &::placeholder {
+      color: red;
+    }
+    border: 1px solid red;
+  }
+}

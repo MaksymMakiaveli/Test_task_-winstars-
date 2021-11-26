@@ -1,3 +1,3 @@
-import { ApplicationActions } from '../types/application';
+import { TodoActions } from '../types/todo';
 
-export type ActionTypes = ApplicationActions;
+export type ActionTypes = TodoActions;

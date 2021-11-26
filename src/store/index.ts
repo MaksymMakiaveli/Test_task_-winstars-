@@ -1,9 +1,8 @@
 import { applyMiddleware, createStore, compose } from 'redux';
 import thunk from 'redux-thunk';
-import api from './middleware/api';
 import reducer from './reducers';
 
-const enhancer = applyMiddleware(thunk, api);
+const enhancer = applyMiddleware(thunk);
 
 const composeEnhancers =
   process.env.NODE_ENV === 'development'

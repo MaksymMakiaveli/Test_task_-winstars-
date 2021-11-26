@@ -1,0 +1,76 @@
+.select_wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  .value_box {
+    position: relative;
+    z-index: 10;
+    width: 150px;
+    padding: 0.5rem 1rem;
+    background: #fff;
+    border-radius: 0.5rem;
+    margin-bottom: 0.2rem;
+    cursor: pointer;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    .value {
+      color: #010832;
+    }
+  }
+  .select {
+    position: absolute;
+    top: 0;
+    transform: translate(0, 50%);
+    z-index: 100;
+    overflow: auto;
+    width: 150px;
+    max-height: 100px;
+    background: #fff;
+    color: #010832;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    opacity: 0;
+    visibility: hidden;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    .select_item {
+      cursor: pointer;
+      &:not(:last-child) {
+        margin-bottom: 1rem;
+      }
+    }
+  }
+
+  .select_active {
+    animation-name: openSelect;
+  }
+  .select_disable {
+    animation-name: closeSelect;
+  }
+  .select_active,
+  .select_disable {
+    animation-duration: 0.5s;
+    animation-direction: normal;
+    animation-fill-mode: forwards;
+  }
+}
+@keyframes openSelect {
+  0% {
+    opacity: 0;
+    visibility: hidden;
+  }
+  100% {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+@keyframes closeSelect {
+  0% {
+    opacity: 1;
+    visibility: visible;
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
